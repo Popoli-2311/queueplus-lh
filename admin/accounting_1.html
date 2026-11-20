@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QueuePlus — Accounting Office Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/admin/css/accounting_1.css">
+<!--<link rel="stylesheet" href="/admin/css/admin-login.css">--> 
+</head>
+<body>
+
+<!-- ═══════════ LOGIN VIEW ═══════════ 
+<div id="login-view" class="login-view">
+  <div class="login-card">
+    <div class="login-brand">
+      <img src="/assets/quelio-small1.png" alt="Quelio" class="login-logo" onerror="this.style.display='none'">
+      <div class="login-brand-text">Quel<em>io</em></div>
+    </div>
+    <div class="login-tag">Accounting Admin</div>
+    <p class="login-sub">Sign in with your window's admin account to open the counter.</p>
+
+    <div class="login-field">
+      <label>Username</label>
+      <input type="text" id="login-user" placeholder="e.g. Accounting Office" autocomplete="username">
+    </div>
+    <div class="login-field">
+      <label>Password</label>
+      <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <div class="login-error" id="login-error">Incorrect username or password.</div>
+    <button class="login-btn" onclick="doLogin()">Sign In</button>
+    <div class="login-hint">Forgot your window's login? Ask your Super Admin to look it up or reset it.</div>
+  </div>
+</div>-->
+
+<div id="app-shell" style="display:block;">
+
+<nav id="topnav">
+  <div class="nav-brand">
+    <img src="assets/quelio-small1.png" alt="Quelio" style="height:26px;width:auto;display:block;">
+    <span class="nav-admin-tag">Accounting Office</span>
+  </div>
+  <div class="nav-actions">
+    <a class="tv-link-btn" href="/tv" target="_blank" rel="noopener noreferrer">
+      <span class="tv-link-dot"></span> TV Display
+    </a>
+    <div class="fb-pill"><div class="fb-dot demo" id="fb-dot"></div></div>
+    <!--<button class="logout-btn" onclick="doLogout()">Log Out</button>-->
+  </div>
+</nav>
+
+<div id="presence-bar">
+  <span class="pb-label">Online Now</span>
+  <div id="presence-chips"></div>
+</div>
+
+
+<div id="dash-view">
+  <div class="dash-header">
+    <div>
+      <h2>Admin Dashboard</h2>
+      <p>Accounting Office — Live Control Panel</p>
+    </div>
+    <div class="dash-actions">
+      <div class="user-chip">
+        <div class="online-dot"></div>
+        <span id="admin-user-lbl">Admin</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-grid">
+    <!-- LEFT COLUMN: Queue number -->
+    <div class="left-col">
+      <!-- Queue Number Display (Blue) - ENLARGED -->
+      <div class="queue-display-panel" id="queue-display-panel">
+        <div class="queue-display-header">
+          <span class="queue-display-label">NOW SERVING</span>
+          <span class="window-label" id="window-label">WINDOW ACCOUNTING OFFICE</span>
+        </div>
+        <div class="queue-number-display" id="serving-display">—</div>
+        <div class="queue-meta" id="serving-meta">Waiting for next customer</div>
+      </div>
+
+      <!-- Skipped Numbers Panel -->
+      <div class="skipped-panel">
+        <div class="panel-title">Skipped Numbers</div>
+        <div id="skipped-list"></div>
+      </div>
+    </div>
+
+    <!-- MIDDLE COLUMN: Controls -->
+    <div class="mid-col">
+      <!-- Control Buttons - Vertical layout -->
+      <div class="controls-panel">
+        <button class="ctrl-btn primary" id="call-next-btn" onclick="callNext()">Call Next</button>
+        <button class="ctrl-btn sec" onclick="recallCurrent()">Re-announce</button>
+        <button class="ctrl-btn warn" id="skip-btn" onclick="skipCurrent()">Skip</button>
+      </div>
+
+      <!-- Window Open Toggle -->
+      <div class="window-toggle-panel">
+        <div class="window-toggle-row">
+          <span class="window-toggle-label">WINDOW OPEN</span>
+          <button type="button" class="kiosk-toggle on" onclick="toggleKioskWindow()" aria-pressed="true">
+            <span class="kiosk-toggle-knob"></span>
+          </button>
+        </div>
+        <div class="window-toggle-status" id="window-status">Open — accepting new numbers</div>
+      </div>
+
+      <!-- Reset Queue Button -->
+      <div class="reset-panel">
+        <button class="danger-btn reset-btn" onclick="resetDept('accounting')">Reset Accounting Office Queue Data</button>
+        <div class="reset-note">Clears all queue data, lane state, and counters for Accounting Office only. Use at start of each day.</div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: Queue Log -->
+    <div class="right-col">
+      <div class="queue-log-panel" id="queue-log-panel">
+        <div class="section-hdr">
+          <div class="section-title"></div>
+          <div class="section-hdr-actions">
+            <span class="section-count" id="log-count">0 entries</span>
+          </div>
+        </div>
+        <div class="tbl-wrap">
+          <table class="qtbl">
+            <thead><tr><th>#</th><th>Ticket</th><!--<th>Department</th>--><th>Issued At</th><th>Status</th><th>Called At</th></tr></thead>
+            <tbody id="qtbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<script type="module" src="/admin/scripts/accounting_1.js"></script>
+</body>
+</html>

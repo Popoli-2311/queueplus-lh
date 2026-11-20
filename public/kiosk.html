@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quelio — Service Kiosk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/kiosk.css">
+</head>                       <!-- ^ is where the styles are loaded-->
+<body>
+
+<div class="topbar">
+  <div class="topbar-title">
+    <div class="tb-mark">
+      <img src="assets/quelio-small1.png" alt="Quelio" style="height:44px;width:auto;display:block;">
+    </div>
+    <div class="tb-textwrap">
+      <span class="tb-brand">Quel<span>io</span></span>
+      <span class="tb-tagline">Official Queue Kiosk</span>
+    </div>
+    <div class="topbar-status" id="fb-label-wrap">
+      <div class="dot" id="fb-dot-inner"></div>
+      <div class="kiosk-promo-wrap">
+        <img
+          class="kiosk-promo-video"
+          src="assets/kiosk-promo.gif"
+          alt="Kiosk promotion"
+        >
+      </div>
+      <span id="fb-label">O</span>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-clock" id="clock">--:--:-- --</div>
+  </div>
+</div>
+
+<div class="stage">
+
+  <div class="section-label"></div>
+
+  <!-- Window cards — rendered dynamically -->
+   <!--is where the users get there number after clicking "GET NUMBER" button-->
+  <div class="windows-row" id="windows-row">
+    <!-- populated by JS -->
+  </div>
+
+  <div class="section-label">Select Service Department</div>
+
+  <!-- Three department cards -->
+  <div class="dept-cards-row">
+
+    <div class="dept-card dc-registrar" id="dept-card-registrar">
+      <div class="dc-closed-badge">Window Closed</div>
+      <div class="dc-icon"></div>
+      <div class="dc-label">Next Ticket</div>
+      <div class="dc-number" id="dc-num-registrar">R001</div>
+      <div class="dc-name">Registrar</div>
+      <div class="dc-sub">Records &amp; enrollment documents</div>
+      <button class="dc-btn" id="dc-btn-registrar" onclick="selectDepartment('registrar')">Get Number</button>
+    </div>
+
+    <div class="dept-card dc-accounting" id="dept-card-accounting">
+      <div class="dc-closed-badge">Window Closed</div><!-- is where the status of window is shown-->
+      <div class="dc-icon"></div>
+      <div class="dc-label">Next Ticket</div>
+      <div class="dc-number" id="dc-num-accounting">A001</div><!-- is where the next number of the window is shown-->
+      <div class="dc-name">Accounting Office</div>
+      <div class="dc-sub">Payments &amp; financial transactions</div>
+      <button class="dc-btn" id="dc-btn-accounting" onclick="selectDepartment('accounting')">Get Number</button>
+    </div>
+
+    <div class="dept-card dc-scholarship" id="dept-card-scholarship">
+      <div class="dc-closed-badge">Window Closed</div>
+      <div class="dc-icon"></div>
+      <div class="dc-label">Next Ticket</div>
+      <div class="dc-number" id="dc-num-scholarship">S001</div>
+      <div class="dc-name">Scholarship &amp; Grants</div>
+      <div class="dc-sub">Scholarship applications &amp; financial aid</div>
+      <button class="dc-btn" id="dc-btn-scholarship" onclick="selectDepartment('scholarship')">Get Number</button>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>Please keep your printed ticket until your number is called · Quelio Public Service Kiosk</footer>
+
+<!-- Hidden thermal printer ticket area -->
+<div id="print-area"></div>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<script type="module" src="scripts/kiosk.js"></script>
+</body>                    <!-- ^ is where the scripts are loaded-->
+</html>

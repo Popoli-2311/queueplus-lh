@@ -1,0 +1,131 @@
+/* admin-login.css — shared login screen for registrar/accounting/scholarship
+   admin dashboards. Uses var(--navy), var(--ivory), var(--cream), var(--text),
+   var(--text3), var(--green), var(--red), var(--shadow), var(--shadow2) which
+   are already defined per-page in registrar_1.css / accounting_1.css /
+   scholarship_1.css, so this one file matches whichever page includes it. */
+
+.login-view {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy3) 100%);
+  padding: 20px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--ivory, #fff);
+  border-radius: 16px;
+  padding: 40px 34px 32px;
+  box-shadow: var(--shadow2);
+  text-align: center;
+}
+
+.login-logo { height: 44px; width: auto; display: inline-block; }
+.login-brand { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 4px; }
+.login-brand-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 24px;
+  color: var(--navy);
+}
+.login-brand-text em { font-style: normal; color: var(--navy2); }
+
+.login-tag {
+  display: inline-block;
+  margin: 10px auto 4px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--ivory2);
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.login-sub {
+  font-size: 12.5px;
+  color: var(--text3);
+  margin: 10px 0 26px;
+  line-height: 1.5;
+}
+
+.login-field { text-align: left; margin-bottom: 16px; }
+.login-field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 6px;
+}
+.login-field input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--ivory2);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s;
+  background: #fff;
+}
+.login-field input:focus { border-color: var(--navy); }
+
+.login-error {
+  display: none;
+  background: rgba(214, 60, 60, 0.1);
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  text-align: left;
+}
+.login-error.show { display: block; }
+
+.login-btn {
+  width: 100%;
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 13px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.login-btn:hover { background: var(--navy3); }
+
+.login-hint {
+  margin-top: 18px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text3);
+}
+
+.logout-btn {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--red);
+  background: rgba(214, 60, 60, 0.1);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.logout-btn:hover { background: rgba(214, 60, 60, 0.18); }

@@ -1,0 +1,347 @@
+:root {
+  --bg: #ffffff;
+  --panel: #f4f6fa;
+  --card: #ffffff;
+  --border: #e6eaf0;
+  --ink: #12151c;
+  --ink-mid: #475569;
+  --ink-soft: #94a3b8;
+  --teal: #1fa0a8;
+  --teal-dark: #0b756c;
+  --teal-tint: #f0fdfa;
+  --teal-border: #ccfbf4;
+  --blue: #2851d8;
+  --blue-dark: #1e3fae;
+  --green: #22c55e;
+  --amber: #d97706;
+  --pill: #1c1f26;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { width: 100%; height: 100%; overflow: hidden; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--panel);
+  color: var(--ink);
+}
+
+/* ── SCREEN ── */
+.screen {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ── LEFT: IMAGE PANEL ── */
+.image-panel {
+  flex: 1 1 66%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+}
+
+.ip-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 75px 40px;
+  height: 78px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.ip-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ip-logo { height: 50px; width: auto; display: block; }
+
+.ip-brand-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: .3px;
+  color: var(--blue);
+}
+
+.ip-brand-text em { font-style: normal; color: var(--teal); }
+
+.ip-header-right { text-align: right; line-height: 1.35; }
+
+.ip-date {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 25px;
+  font-weight: 1000px;
+  color: red;
+}
+
+.ip-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 25px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  letter-spacing: 1px;
+}
+
+/* ── MEDIA AREA (photo goes here) ── */
+.ip-media {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, #eef2f7 0%, #e4e9f0 100%);
+}
+
+/* If a real <img>/<video> is later placed as the first child of .ip-media,
+   this rule makes it fill the panel automatically. */
+.ip-media > img,
+.ip-media > video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Image carousel (auto-rotating slides, crossfade) ── */
+.ip-carousel {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ip-carousel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.ip-carousel img.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/*.ip-media-placeholder {
+  position: absolute;
+  inset: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  color: #9aa7b8;
+}*/
+
+.ip-media-placeholder svg {
+  width: 48px;
+  height: 48px;
+  stroke-width: 1.2;
+}
+
+.ip-media-placeholder span {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+.ip-status {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: blink 2s infinite;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0);
+}
+
+.live-dot.demo { background: var(--amber); }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .35; }
+}
+
+.live-label { display: none; }
+
+.tb-sound {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  padding: 7px 14px;
+  transition: background .2s, border-color .2s;
+  user-select: none;
+}
+
+.tb-sound:hover { background: #ffffff; }
+.tb-sound.on { border-color: var(--teal-border); background: var(--teal-tint); }
+.tb-sound svg { width: 15px; height: 15px; flex-shrink: 0; }
+.tb-sound.on svg { color: var(--teal); }
+.tb-sound.muted svg { color: var(--ink-soft); }
+
+.tb-sound-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+}
+
+.tb-sound.on .tb-sound-label { color: var(--teal-dark); }
+
+/* ── TICKER OVER BOTTOM OF PHOTO ── */
+.ip-ticker {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+  height: 46px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(0deg, rgba(15,18,25,.82), rgba(15,18,25,.66));
+}
+
+.ip-ticker-track {
+  white-space: nowrap;
+  padding-left: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .3px;
+  color: #f4f6fa;
+  animation: ticker-scroll 22s linear infinite;
+}
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ── RIGHT: TICKETS PANEL ── */
+.tickets-panel {
+  flex: 0 0 500px;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  background: var(--panel);
+  overflow-y: auto;
+}
+
+.ticket-card {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 1px 2px rgba(15,23,42,.03), 0 8px 20px rgba(15,23,42,.05);
+  padding: 14px 12px;
+  transition: opacity .4s;
+}
+
+.ticket-card.offline { opacity: .4; filter: grayscale(.4); }
+
+.tc-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.tc-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: clamp(100px, 3.6vw, 1000px);
+  letter-spacing: .5px;
+  color: var(--blue-dark);
+  line-height: .95;
+  transition: transform .3s;
+}
+
+.tc-number.dash { color: #c9d0da; }
+.tc-number.flash { animation: tc-flash .45s ease both; }
+
+@keyframes tc-flash {
+  0%   { opacity: 0; transform: scale(.88); }
+  60%  { opacity: 1; transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.tc-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 500px;
+  background: var(--teal-dark);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(11px, 1vw, 50px);
+  letter-spacing: .2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tc-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--green);
+}
+
+.tc-status-dot.online { animation: blink 2s infinite; }
+.tc-status-dot.offline { background: #6b7280; }
+
+/* No-lane placeholder */
+.no-lanes-msg {
+  margin: auto;
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  color: var(--ink-soft);
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 0 12px;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quelio — TV Display</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tv_1.css">
+</head>
+<body>
+
+<div class="screen">
+
+  <div class="image-panel">
+    <div class="ip-header">
+      <div class="ip-brand">
+        <img src="assets/quelio-small1.png" alt="Quelio" class="ip-logo">
+        <div class="ip-brand-text">Quel<em>io</em></div>
+      </div>
+      <div class="ip-header-right">
+        <div class="ip-date" id="tv-date">—</div>
+        <div class="ip-time" id="clock">--:-- --</div>
+      </div>
+    </div>
+
+    <div class="ip-media" id="ip-media">
+      <div class="ip-carousel" id="ip-carousel"></div>
+
+      <div class="ip-media-placeholder" id="ip-media-placeholder">
+        <!--<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+        <span>Display image goes here</span>-->
+      </div>
+
+      <div class="ip-status">
+        <div class="live-dot demo" id="fb-dot"></div>
+        <div class="live-label" id="fb-label">O</div>
+        <div class="tb-sound muted" id="sound-toggle" title="Click to enable voice announcements">
+          <svg id="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+          <span class="tb-sound-label" id="sound-label">Voice Off</span>
+        </div>
+      </div>
+
+      <div class="ip-ticker">
+        <div class="ip-ticker-track" id="uni-name-tv">Quelio Management System — Live Display</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tickets-panel" id="lanes-row">
+    <div class="no-lanes-msg">Waiting for admin sessions…</div>
+  </div>
+
+</div>
+
+<script type="module" src="scripts/tv_1.js"></script>
+</body>
+</html>
